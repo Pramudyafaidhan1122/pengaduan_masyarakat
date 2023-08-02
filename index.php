@@ -1,47 +1,40 @@
-<?php
-    $koneksi = new PDO("mysql:host=localhost;dbname=pengaduan_masyarakat","root","");
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aplikasi Pengaduan Masyarakat</title>
+	<link rel="shortcut icon" href="https://cepatpilih.com/image/logo.png">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    class masyarakat {
-        public $nik;
-        public $nama;
-        public $username;
-        public $password;
-        public $telp;
+	<link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-        function __construct($nik,$nama,$username,$password,$telp)
-        {
-            $this->nik = $nik;
-            $this->nama = $nama;
-            $this->username = $username;
-            $this->password = $password;
-            $this->telp = $telp;
-        }
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 
-        function TampilBiodata()
-        {
-            $this->nik;
-            $this->nama;
-            $this->username;
-            $this->password;
-            $this->telp;
-        }
+</head>
+<body style="background: url(img/bg.jpg); background-size: cover;">
 
-        function tambah(){
-            include "koneksi.php";
-            $koneksi->query("INSERT INTO `masyarakat` VALUES ('$this->nik', '$this->nama', '$this->username', '$this->password', '$this->telp')");
-        }
+	<div class="container">
+		
 
-        function hapus(){
-            include "koneksi.php";
-            $koneksi->query("DELETE FROM `masyarakat` WHERE nik='$this->nik'");
-        }
+	<?php 
+		include 'conn/koneksi.php';
+		if(@$_GET['p']==""){
+			include_once 'login.php';
+		}
+		elseif(@$_GET['p']=="login"){
+			include_once 'login.php';
+		}
+		elseif(@$_GET['p']=="logout"){
+			include_once 'logout.php';
+		}
+	 ?>
 
-        function update($nama,$data_username,$data_password,$telp){
-            include "koneksi.php";
-            $koneksi->query("UPDATE `masyarakat` SET `nama`='$nama',`username`='$data_username',`password`='$data_password',`telp`='$telp' WHERE nik='$this->nik'");
-        }
-    }
-
-    $warga = new masyarakat("4","pepe","pp44","444","0947");
-    $warga->tambah();
-?>
+	</div>
+</body>
+</html>
